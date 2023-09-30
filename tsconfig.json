@@ -1,27 +1,58 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@Components/*": ["./src/components/*"],
+      "@Containers/*": ["./src/containers/*"],
+      "@Constants/*": ["./src/constants/*"],
+      "@Contexts/*": ["./src/contexts/*"],
+      "@Core/*": ["./src/core/*"],
+      "@HOC/*": ["./src/hoc/*"],
+      "@Hooks/*": ["./src/hooks/*"],
+      "@Icons/*": ["./src/icons/*"],
+      "@Layouts/*": ["./src/layouts/*"],
+      "@Libs/*": ["./src/lib/*"],
+      "@Pages/*": ["./src/pages/*"],
+      "@Resources/*": ["./src/resources/*"],
+      "@Services/*": ["./src/services/*"],
+      "@Store/*": ["./src/store/*"],
+      "@Styles/*": ["./src/styles/*"],
+      "@Types/*": ["./src/types/*"],
+      "@Utils/*": ["./src/utils/*"],
+      "@/*": ["./src/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    ".jest/setup.ts",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
