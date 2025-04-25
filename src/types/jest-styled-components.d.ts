@@ -3,7 +3,6 @@
 // https://github.com/styled-components/jest-styled-components/blob/master/typings/index.d.ts
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/ban-types */
 import { css } from 'styled-components';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -13,20 +12,20 @@ declare global {
   namespace jest {
     interface AsymmetricMatcher {
       $$typeof: Symbol
-      sample?: string | RegExp | object | Array<any> | Function
-    }
-
-    type Value = string | number | RegExp | AsymmetricMatcher | undefined
-
-    interface Options {
-      media?: string
-      modifier?: string | ReturnType<typeof css>
-      supports?: string
+      sample?: Array<any> | Function | object | RegExp | string
     }
 
     interface Matchers<R, T> {
       toHaveStyleRule(property: string, value?: Value, options?: Options): R
     }
+
+    interface Options {
+      media?: string
+      modifier?: ReturnType<typeof css> | string
+      supports?: string
+    }
+
+    type Value = AsymmetricMatcher | number | RegExp | string | undefined
   }
 }
 
@@ -35,8 +34,8 @@ export interface StyledComponentsSerializerOptions {
   classNameFormatter?: (index: number) => string
 }
 
-export declare const styleSheetSerializer: NewPlugin & {
+export declare const styleSheetSerializer: {
   setStyleSheetSerializerOptions: (
     options?: StyledComponentsSerializerOptions
   ) => void
-};
+} & NewPlugin;

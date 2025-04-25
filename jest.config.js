@@ -1,7 +1,13 @@
-module.exports = {
+// eslint-disable-next-line import/extensions
+import nextJest from 'next/jest.js';
+
+const createJestConfig = nextJest({
+  dir: './',
+});
+
+const config = createJestConfig({
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['/node_modules/', '/.next/'],
-  collectCoverage: true,
   collectCoverageFrom: [
     'src/**/*.ts(x)?',
     '!src/**/stories.ts(x)?',
@@ -21,4 +27,11 @@ module.exports = {
   moduleNameMapper: {
     '^styled-components': 'styled-components/dist/styled-components.browser.cjs.js',
   },
-};
+});
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default async () => ({
+  ...(await config()),
+  coverageProvider: 'v8',
+  verbose: !process.env.CI,
+});
