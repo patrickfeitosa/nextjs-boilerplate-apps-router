@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import StyledComponentsRegistry from '@Libs/registry';
-
 import Providers from './providers';
+
+import '@Styles/global/index.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,11 +19,9 @@ const RootLayout = ({
 }) => (
   <html lang="en">
     <body className={inter.className}>
-      <StyledComponentsRegistry>
-        <Providers>
-          {children}
-        </Providers>
-      </StyledComponentsRegistry>
+      <Providers>
+        {children}
+      </Providers>
     </body>
   </html>
 );

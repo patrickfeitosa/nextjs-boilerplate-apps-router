@@ -1,12 +1,5 @@
 import { PropsWithChildren } from 'react';
 
-import GlobalStyles from '@Styles/global';
-
-const Providers = ({ children }: PropsWithChildren) => (
-  <>
-    <GlobalStyles />
-    {children}
-  </>
-);
+const Providers = ({ children }: PropsWithChildren) => children;
 
 export default Providers;

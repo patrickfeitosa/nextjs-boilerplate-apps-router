@@ -10,11 +10,6 @@ module.exports = {
     jest: true,
     node: true,
   },
-  settings: {
-    react: {
-      version: 'detect',
-    },
-  },
   extends: [
     'next/core-web-vitals',
     'airbnb',
@@ -26,13 +21,8 @@ module.exports = {
     'plugin:storybook/recommended',
     'plugin:perfectionist/recommended-alphabetical-legacy',
   ],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 'latest',
-    sourceType: 'module',
+  globals: {
+    React: true,
   },
   overrides: [
     {
@@ -47,6 +37,14 @@ module.exports = {
       },
     },
   ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
   plugins: [
     'react',
     'react-hooks',
@@ -56,44 +54,129 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
-    'linebreak-style': 'off', // Avoid LF/CRLF on Win/Linux/Mac
-    'import/no-unresolved': 'off',
-    'import/prefer-default-export': 'off', // For single Styled Component exports
-    'import/no-extraneous-dependencies': ['error', {
-      devDependencies: true,
-    }],
-    // Allow .js files to use JSX syntax
-    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
-    'react/jsx-filename-extension': [1, {
-      extensions: ['.js', 'jsx', '.ts', '.tsx'],
-    }],
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
+    '@typescript-eslint/no-use-before-define': [0, { classes: false, functions: false, variables: false }],
+    // Disable default-param-last/no-restricted-exports due to redux reducers
+    'default-param-last': 0,
     'import/extensions': ['error', 'ignorePackages', {
       js: 'never', jsx: 'never', ts: 'never', tsx: 'never',
     }],
-    'react/jsx-one-expression-per-line': 'off',
-    'react/no-danger': 'off',
-    'react/display-name': 'off',
-    'react/jsx-props-no-spreading': 'off',
+    'import/no-extraneous-dependencies': ['error', {
+      devDependencies: true,
+    }],
+    'import/no-unresolved': 'off',
+    'import/prefer-default-export': 'off', // For single Styled Component exports
     'jsx-a11y/media-has-caption': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    'react/prop-types': 'off',
-    'no-use-before-define': [0, { functions: false, classes: false, variables: false }],
-    '@typescript-eslint/no-use-before-define': [0, { functions: false, classes: false, variables: false }],
-    'react/require-default-props': 'off',
+    'linebreak-style': 'off', // Avoid LF/CRLF on Win/Linux/Mac
+    'no-restricted-exports': 0,
+    // Disable due TS Enum errors
+    'no-shadow': 'off',
+    'no-use-before-define': [0, { classes: false, functions: false, variables: false }],
     // Import orders
     'perfectionist/sort-imports': [
       'error',
       {
-        type: 'alphabetical',
-        order: 'asc',
+        customGroups: [
+          {
+            elementNamePattern: ['^next'],
+            groupName: 'next',
+          },
+          {
+            elementNamePattern: ['^styled'],
+            groupName: 'styled-components',
+          },
+          {
+            elementNamePattern: ['react$', '^react.+'],
+            groupName: 'react',
+          },
+          {
+            elementNamePattern: ['react$', '^react.+'],
+            groupName: 'react',
+          },
+          {
+            elementNamePattern: ['^@Assets\\/'],
+            groupName: 'Assets',
+          },
+          {
+            elementNamePattern: ['^@Components\\/'],
+            groupName: 'Components',
+          },
+          {
+            elementNamePattern: ['^@Containers\\/'],
+            groupName: 'Containers',
+          },
+          {
+            elementNamePattern: ['^@Constants\\/'],
+            groupName: 'Constants',
+          },
+          {
+            elementNamePattern: ['^@Contexts\\/'],
+            groupName: 'Contexts',
+          },
+          {
+            elementNamePattern: ['^@HOC\\/'],
+            groupName: 'HOC',
+          },
+          {
+            elementNamePattern: ['^@Hooks\\/'],
+            groupName: 'Hooks',
+          },
+          {
+            elementNamePattern: ['^@Icons\\/'],
+            groupName: 'Icons',
+          },
+          {
+            elementNamePattern: ['^@Layouts\\/'],
+            groupName: 'Layouts',
+          },
+          {
+            elementNamePattern: ['^@Mocks\\/'],
+            groupName: 'Mocks',
+          },
+          {
+            elementNamePattern: ['^@Pages\\/'],
+            groupName: 'Pages',
+          },
+          {
+            elementNamePattern: ['^@Resources\\/'],
+            groupName: 'Resources',
+          },
+          {
+            elementNamePattern: ['^@Routes\\/'],
+            groupName: 'Routes',
+          },
+          {
+            elementNamePattern: ['^@Services\\/'],
+            groupName: 'Services',
+          },
+          {
+            elementNamePattern: ['^@Store\\/'],
+            groupName: 'Store',
+          },
+          {
+            elementNamePattern: ['^@Styles\\/'],
+            groupName: 'Styles',
+          },
+          {
+            elementNamePattern: ['^@Templates\\/'],
+            groupName: 'Templates',
+          },
+          {
+            elementNamePattern: ['^@Tests\\/'],
+            groupName: 'Tests',
+          },
+          {
+            elementNamePattern: ['^@Types\\/'],
+            groupName: 'Types',
+          },
+          {
+            elementNamePattern: ['^@Utils\\/'],
+            groupName: 'Utils',
+          },
+        ],
+        environment: 'node',
         fallbackSort: { type: 'unsorted' },
-        ignoreCase: true,
-        specialCharacters: 'keep',
-        internalPattern: ['^@/.+'],
-        partitionByComment: false,
-        partitionByNewLine: false,
-        newlinesBetween: 'always',
-        maxLineLength: undefined,
         groups: [
           'next',
           'styled-components',
@@ -121,118 +204,35 @@ module.exports = {
           ['value-parent', 'value-sibling', 'value-index'],
           'unknown',
         ],
-        customGroups: [
-          {
-            groupName: 'next',
-            elementNamePattern: ['^next'],
-          },
-          {
-            groupName: 'styled-components',
-            elementNamePattern: ['^styled'],
-          },
-          {
-            groupName: 'react',
-            elementNamePattern: ['react$', '^react.+'],
-          },
-          {
-            groupName: 'react',
-            elementNamePattern: ['react$', '^react.+'],
-          },
-          {
-            groupName: 'Assets',
-            elementNamePattern: ['^@Assets\/'],
-          },
-          {
-            groupName: 'Components',
-            elementNamePattern: ['^@Components\/'],
-          },
-          {
-            groupName: 'Containers',
-            elementNamePattern: ['^@Containers\/'],
-          },
-          {
-            groupName: 'Constants',
-            elementNamePattern: ['^@Constants\/'],
-          },
-          {
-            groupName: 'Contexts',
-            elementNamePattern: ['^@Contexts\/'],
-          },
-          {
-            groupName: 'HOC',
-            elementNamePattern: ['^@HOC\/'],
-          },
-          {
-            groupName: 'Hooks',
-            elementNamePattern: ['^@Hooks\/'],
-          },
-          {
-            groupName: 'Icons',
-            elementNamePattern: ['^@Icons\/'],
-          },
-          {
-            groupName: 'Layouts',
-            elementNamePattern: ['^@Layouts\/'],
-          },
-          {
-            groupName: 'Mocks',
-            elementNamePattern: ['^@Mocks\/'],
-          },
-          {
-            groupName: 'Pages',
-            elementNamePattern: ['^@Pages\/'],
-          },
-          {
-            groupName: 'Resources',
-            elementNamePattern: ['^@Resources\/'],
-          },
-          {
-            groupName: 'Routes',
-            elementNamePattern: ['^@Routes\/'],
-          },
-          {
-            groupName: 'Services',
-            elementNamePattern: ['^@Services\/'],
-          },
-          {
-            groupName: 'Store',
-            elementNamePattern: ['^@Store\/'],
-          },
-          {
-            groupName: 'Styles',
-            elementNamePattern: ['^@Styles\/'],
-          },
-          {
-            groupName: 'Templates',
-            elementNamePattern: ['^@Templates\/'],
-          },
-          {
-            groupName: 'Tests',
-            elementNamePattern: ['^@Tests\/'],
-          },
-          {
-            groupName: 'Types',
-            elementNamePattern: ['^@Types\/'],
-          },
-          {
-            groupName: 'Utils',
-            elementNamePattern: ['^@Utils\/'],
-          },
-        ],
-        environment: 'node',
+        ignoreCase: true,
+        internalPattern: ['^@/.+'],
+        maxLineLength: undefined,
+        newlinesBetween: 'always',
+        order: 'asc',
+        partitionByComment: false,
+        partitionByNewLine: false,
+        specialCharacters: 'keep',
+        type: 'alphabetical',
       },
     ],
+    'react/display-name': 'off',
     'react/function-component-definition': [1, {
       namedComponents: 'arrow-function',
     }],
-    // Disable default-param-last/no-restricted-exports due to redux reducers
-    'default-param-last': 0,
-    'no-restricted-exports': 0,
-    // Disable due TS Enum errors
-    'no-shadow': 'off',
-    '@typescript-eslint/no-shadow': ['error'],
+    // Allow .js files to use JSX syntax
+    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
+    'react/jsx-filename-extension': [1, {
+      extensions: ['.js', 'jsx', '.ts', '.tsx'],
+    }],
+    'react/jsx-one-expression-per-line': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/no-danger': 'off',
+    'react/prop-types': 'off',
+    'react/require-default-props': 'off',
   },
-  globals: {
-    React: true,
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
 };
