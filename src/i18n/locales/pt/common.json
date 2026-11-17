@@ -1,0 +1,11 @@
+{
+  "error": {
+    "description": "Ocorreu um erro inesperado.",
+    "retry": "Tentar novamente",
+    "title": "Algo deu errado"
+  },
+  "notFound": {
+    "description": "A página que você procura não existe.",
+    "title": "Página não encontrada"
+  }
+}

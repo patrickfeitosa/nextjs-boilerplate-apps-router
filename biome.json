@@ -1,0 +1,76 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.6.8/schema.json",
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              ["react", "react-*"],
+              ["next", "next/**"],
+              "@tanstack/**",
+              "@testing-library/**",
+              ":PACKAGE:",
+              ["@Api/**", "@Schemas/**"],
+              ["@Ui/**", "@Domain/**", "@Components/**"],
+              ["@Hooks/**", "@Libs/**", "@I18n", "@I18n/**", "@Test/**", "@Types/**", "@/**"],
+              ":PATH:",
+              "@Styles/**"
+            ]
+          }
+        },
+        "useSortedAttributes": "on",
+        "useSortedKeys": "on"
+      }
+    },
+    "enabled": true
+  },
+  "css": {
+    "parser": { "tailwindDirectives": true }
+  },
+  "files": {
+    "includes": [
+      "**",
+      "!**/.next",
+      "!**/node_modules",
+      "!**/storybook-static",
+      "!**/public",
+      "!**/test-results",
+      "!**/playwright-report",
+      "!**/coverage",
+      "!**/yarn.lock"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 100
+  },
+  "javascript": {
+    "formatter": { "quoteStyle": "single", "semicolons": "always" }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "performance": { "noReExportAll": "error" },
+      "preset": "recommended",
+      "style": {
+        "noRestrictedImports": {
+          "level": "error",
+          "options": {
+            "patterns": [
+              {
+                "group": ["../*", "../**"],
+                "message": "Use an alias (@Ui, @Hooks, @Libs, ...) instead of ../ imports. ./ is only for a module's own siblings."
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "vcs": { "clientKind": "git", "enabled": true, "useIgnoreFile": true }
+}

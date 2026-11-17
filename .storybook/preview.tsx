@@ -1,11 +1,10 @@
-import React from 'react';
+import type { Preview } from '@storybook/react';
 
-import '../src/styles/global/index.css';
+import '@I18n';
+import '@Styles/global/index.css';
 
-export const decorators = [
-  (Story) => (
-    <Story />
-  ),
-];
+const preview: Preview = {
+  tags: ['autodocs'],
+};
 
-export const tags = ['autodocs'];
+export default preview;

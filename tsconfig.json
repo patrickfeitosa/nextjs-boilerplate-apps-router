@@ -1,58 +1,37 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
     "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
+    "baseUrl": ".",
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true,
-    "baseUrl": ".",
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
     "paths": {
-      "@Components/*": ["./src/components/*"],
-      "@Containers/*": ["./src/containers/*"],
-      "@Constants/*": ["./src/constants/*"],
-      "@Contexts/*": ["./src/contexts/*"],
-      "@Core/*": ["./src/core/*"],
-      "@HOC/*": ["./src/hoc/*"],
-      "@Hooks/*": ["./src/hooks/*"],
-      "@Icons/*": ["./src/icons/*"],
-      "@Layouts/*": ["./src/layouts/*"],
-      "@Libs/*": ["./src/lib/*"],
-      "@Pages/*": ["./src/pages/*"],
-      "@Resources/*": ["./src/resources/*"],
-      "@Services/*": ["./src/services/*"],
-      "@Store/*": ["./src/store/*"],
-      "@Styles/*": ["./src/styles/*"],
-      "@Types/*": ["./src/types/*"],
-      "@Utils/*": ["./src/utils/*"],
       "@/*": ["./src/*"],
-    }
+      "@Api/*": ["./src/api/*"],
+      "@Components/*": ["./src/components/*"],
+      "@Domain/*": ["./src/components/domain/*"],
+      "@Hooks/*": ["./src/hooks/*"],
+      "@I18n": ["./src/i18n"],
+      "@I18n/*": ["./src/i18n/*"],
+      "@Libs/*": ["./src/lib/*"],
+      "@Schemas/*": ["./src/api/schemas/*"],
+      "@Styles/*": ["./src/styles/*"],
+      "@Test/*": ["./src/test/*"],
+      "@Types/*": ["./src/types/*"],
+      "@Ui/*": ["./src/components/ui/*"]
+    },
+    "plugins": [{ "name": "next" }],
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2022"
   },
-  "include": [
-    ".jest/setup.ts",
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"]
 }

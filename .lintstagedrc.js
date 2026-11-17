@@ -1,7 +1,4 @@
 module.exports = {
-  '*.{js,jsx,ts,tsx}': [
-    'npm run lint:js',
-    'npm run lint:css',
-    'npm run test --findRelatedTests --bail'
-  ],
+  '*.{js,jsx,ts,tsx,json,css}': ['biome check --write --no-errors-on-unmatched'],
+  '*.{ts,tsx}': ['vitest related --run --passWithNoTests'],
 };
