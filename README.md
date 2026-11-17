@@ -1,10 +1,10 @@
 # Next.js Boilerplate (App Router)
 
-Next 15 + React 19 + TypeScript starter. See [`STRUCTURE.md`](STRUCTURE.md) for the folder map and [`CLAUDE.md`](CLAUDE.md) for conventions.
+Next 16 + React 19.2 + TypeScript starter. See [`STRUCTURE.md`](STRUCTURE.md) for the folder map and [`CLAUDE.md`](CLAUDE.md) for conventions.
 
 ## Stack
 
-Next.js App Router, TanStack Query, Zod, axios, react-hook-form, react-i18next, Tailwind CSS 4, Vitest + Testing Library + MSW, Playwright, Storybook 8, Biome, Husky + lint-staged, commitlint + commitizen.
+Next.js App Router, TanStack Query, Zod, axios, react-hook-form, react-i18next, Tailwind CSS 4, Vitest + Testing Library + MSW, Playwright, Storybook 10, Biome, Husky + lint-staged, commitlint + commitizen.
 
 ## Getting started
 

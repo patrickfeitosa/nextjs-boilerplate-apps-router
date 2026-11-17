@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Is
 
-A Next.js 15 (App Router) + React 19 + TypeScript starter. It's a boilerplate: the code is a small, working end-to-end example (`Main` component, `health` resource with schema → api → hook, i18n, tests, stories) meant to be copied and extended. The folder map is [`STRUCTURE.md`](STRUCTURE.md).
+A Next.js 16 (App Router) + React 19.2 + TypeScript starter. It's a boilerplate: the code is a small, working end-to-end example (`Main` component, `health` resource with schema → api → hook, i18n, tests, stories) meant to be copied and extended. The folder map is [`STRUCTURE.md`](STRUCTURE.md).
 
 ## Commands
 
@@ -38,7 +38,7 @@ Node 24 (LTS) is the target (`.nvmrc`; run `nvm use`), `engines` allows ≥ 22.1
 ## Conventions
 
 - **Folder-per-module + naming + props + forms + i18n + imports:** read `.claude/skills/frontend-conventions.md` before adding anything under `src/`.
-- **Imports:** PascalCase aliases defined once in `tsconfig.json`. `../` imports are a lint error (`noRestrictedImports`); `./` only for a module's own siblings. Biome enforces import order, sorted object keys and JSX props. A new alias also has to be added to `.storybook/main.ts` and the Biome import groups.
+- **Imports:** PascalCase aliases defined once in `tsconfig.json`. `../` imports are a lint error (`noRestrictedImports`); `./` only for a module's own siblings. Biome enforces import order, sorted object keys and JSX props. A new alias also has to be added to the Biome import groups.
 - **No `export *`:** `index.ts` files use explicit named exports (`performance.noReExportAll` is `error`).
 - **Formatter/linter:** Biome. 2-space indent, 100 line width, single quotes, semicolons. Config in `biome.json`.
 - **Testing:** read `.claude/skills/testing.md` before writing tests. Unit/component tests are `*.spec.ts(x)` co-located with the module (Vitest + Testing Library + MSW); e2e specs are in `e2e/`. Both layers share the fixtures in `src/test/msw/handlers.ts`.

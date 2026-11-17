@@ -12,7 +12,7 @@ Three layers, deliberately not redundant:
 | ---------------- | ------------------------------------------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | Unit / component | `src/**/*.spec.ts(x)`, co-located with the module | Vitest + Testing Library + MSW (jsdom) | Component logic and rendering, helpers, hooks, schemas, api functions                                       |
 | E2E              | `e2e/*.spec.ts`                                   | Playwright (Chromium, network mocked)  | Real-browser behaviour: focus, dialogs, navigation, routing (`not-found`, `error`), async Server Components |
-| Visual / docs    | `src/components/**/*.stories.tsx`                 | Storybook 8                            | Component states in isolation, autodocs                                                                     |
+| Visual / docs    | `src/components/**/*.stories.tsx`                 | Storybook 10                           | Component states in isolation, autodocs                                                                     |
 
 ## Commands
 
@@ -73,7 +73,7 @@ Override a handler for one test with `server.use(http.get(..., () => HttpRespons
 ## Stories (`*.stories.tsx`)
 
 - One file per component, next to it. `title` = the component name; default `args`; one story per meaningful state (`Default`, plus named variants).
-- Typed with `Meta<typeof Component>` / `StoryObj<typeof Component>` from `@storybook/react`; `export default meta`.
+- Typed with `Meta<typeof Component>` / `StoryObj<typeof Component>` from `@storybook/nextjs-vite`; `export default meta`.
 - Storybook loads i18n and the global Tailwind CSS from `.storybook/preview.tsx`. Components that fetch need a provider decorator or MSW; prefer stories for presentational components and pass data via args.
 - The glob is `src/components/**/*.stories.tsx`; stories are excluded from coverage.
 

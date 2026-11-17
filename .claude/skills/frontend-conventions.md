@@ -76,7 +76,7 @@ This applies to our own named types (component props, a hook's options, a mutati
 - `Main` is a client component because it calls `useTranslation`; `app/providers.tsx` is one because it creates the `QueryClient`.
 - Keep `'use client'` boundaries low in the tree so layouts and pages stay on the server. Props passed from a server component to a client one must be serializable.
 - Server data can be fetched in a Server Component and passed down as props, or prefetched and hydrated into the Query cache. Either way validate with the Zod schemas from `api/schemas`.
-- Validate URL search params with a Zod schema placed next to the route (`app/<route>/search-schema/`) and parse the `searchParams` prop in `page.tsx`.
+- Validate URL search params with a Zod schema placed next to the route (`app/<route>/search-schema/`) and parse the `searchParams` prop in `page.tsx`. In Next 16 `params` and `searchParams` are Promises: type the page props accordingly and `await` them (`const search = searchSchema.parse(await props.searchParams)`), which makes the page an `async` Server Component.
 
 ## Forms: use react-hook-form when necessary
 
@@ -98,7 +98,7 @@ Out of scope until a second locale is really needed in a given area: `lib/` form
 
 ## Imports: path aliases and ordering
 
-Aliases are defined once in `tsconfig.json`. Next reads `paths` natively, Vitest (`vite-tsconfig-paths`) and Playwright read the same file, and **`.storybook/main.ts` mirrors them by hand** in `webpackFinal`.
+Aliases are defined once in `tsconfig.json`. Next reads `paths` natively, Vitest (`vite-tsconfig-paths`) and Playwright read the same file, and Storybook (`@storybook/nextjs-vite`) gets them through `vite-tsconfig-paths` in `.storybook/main.ts`, so there is no second alias map to maintain.
 
 | Alias              | Target                                          |
 | ------------------ | ----------------------------------------------- |
@@ -115,7 +115,7 @@ Aliases are defined once in `tsconfig.json`. Next reads `paths` natively, Vitest
 | `@Types/*`         | `src/types/*`                                   |
 | `@/*`              | `src/*` (catch-all)                             |
 
-- **Add an alias together with its folder, the first time you need it.** Don't declare aliases for folders that don't exist. A new alias means editing `tsconfig.json`, the alias map in `.storybook/main.ts`, and the `organizeImports` groups in `biome.json`.
+- **Add an alias together with its folder, the first time you need it.** Don't declare aliases for folders that don't exist. A new alias means editing `tsconfig.json` and the `organizeImports` groups in `biome.json`.
 - **`./` only for a module's own siblings** (`./Main.types`). Anything outside the folder uses an alias. `../` imports are a lint error (`noRestrictedImports`), including in `e2e/` and `.storybook/`.
 - **Order is enforced by Biome's `organizeImports`** (`yarn lint:fix` fixes it): `react` → `next` → `@tanstack/*` → `@testing-library/*` → other packages → `@Api`/`@Schemas` → `@Ui`/`@Domain`/`@Components` → `@Hooks`/`@Libs`/`@I18n`/`@Test`/`@Types`/`@/` → `./` siblings → `@Styles`. Blank lines between groups are not enforced.
 - **Side-effect imports (`import '@I18n'`, `import '@Styles/global/index.css'`) are not sorted.** They act as barriers because their execution order can matter (`src/test/setup.ts`).

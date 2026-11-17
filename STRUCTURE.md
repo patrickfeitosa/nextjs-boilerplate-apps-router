@@ -1,7 +1,7 @@
 # Folder Structure
 
-Next.js 15 (App Router) + React 19 + TypeScript. TanStack Query, Zod, axios, `react-i18next`, `react-hook-form`, Tailwind CSS 4.
-Tests: Vitest + Testing Library + MSW, Playwright (e2e), Storybook 8. Lint/format: Biome. Detailed rules: `.claude/skills/frontend-conventions.md`.
+Next.js 16 (App Router) + React 19.2 + TypeScript. TanStack Query, Zod, axios, `react-i18next`, `react-hook-form`, Tailwind CSS 4.
+Tests: Vitest + Testing Library + MSW, Playwright (e2e), Storybook 10. Lint/format: Biome. Detailed rules: `.claude/skills/frontend-conventions.md`.
 
 ## Top level
 
@@ -14,7 +14,7 @@ Tests: Vitest + Testing Library + MSW, Playwright (e2e), Storybook 8. Lint/forma
 ├── vitest.config.ts      # jsdom, src/test/setup.ts, vite-tsconfig-paths reads the aliases
 ├── playwright.config.ts  # webServer (yarn dev / yarn start in CI), baseURL, Chromium
 ├── biome.json            # Lint + format + import order + sorted keys/props, ../ ban
-├── .storybook/           # main.ts (stories glob, @storybook/nextjs, alias mirror), preview.tsx
+├── .storybook/           # main.ts (stories glob, @storybook/nextjs-vite, tsconfig paths), preview.tsx
 ├── .husky/               # pre-commit -> lint-staged, commit-msg -> commitlint
 ├── .lintstagedrc.js      # Biome on staged files, related Vitest tests
 ├── .commitlintrc.js      # Conventional commits
@@ -82,4 +82,4 @@ Main/
 
 ## Path aliases (`tsconfig.json`)
 
-`@Api`, `@Schemas`, `@Ui`, `@Domain`, `@Components`, `@Hooks`, `@Libs`, `@I18n`, `@Styles`, `@Test`, `@Types`, `@/` (catch-all). Mirrored in `.storybook/main.ts`; Vitest and Playwright read `tsconfig.json`. `../` imports are a lint error.
+`@Api`, `@Schemas`, `@Ui`, `@Domain`, `@Components`, `@Hooks`, `@Libs`, `@I18n`, `@Styles`, `@Test`, `@Types`, `@/` (catch-all). Vitest, Playwright and Storybook (via `vite-tsconfig-paths`) all read `tsconfig.json`. `../` imports are a lint error.
